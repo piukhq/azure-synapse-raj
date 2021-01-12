@@ -1,0 +1,37 @@
+{
+	"name": "User_Organisation_HermesDev_DS",
+	"properties": {
+		"description": "Integration dataset for User_Organisation table in Hermes Dev",
+		"linkedServiceName": {
+			"referenceName": "OLTP Dev bink_uksouth_dev_common",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzurePostgreSqlTable",
+		"schema": [
+			{
+				"name": "id",
+				"type": "integer",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "name",
+				"type": "character varying",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "terms_and_conditions",
+				"type": "text",
+				"precision": 0,
+				"scale": 0
+			}
+		],
+		"typeProperties": {
+			"schema": "public",
+			"table": "user_organisation"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

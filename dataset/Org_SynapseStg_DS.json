@@ -1,0 +1,32 @@
+{
+	"name": "Org_SynapseStg_DS",
+	"properties": {
+		"description": "Integration Dataset for Org table in SynapseStagingR",
+		"annotations": [],
+		"type": "SqlPoolTable",
+		"schema": [
+			{
+				"name": "id",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "name",
+				"type": "varchar"
+			},
+			{
+				"name": "terms_and_conditions",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "org"
+		},
+		"sqlPool": {
+			"referenceName": "SynapseStagingR",
+			"type": "SqlPoolReference"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

@@ -1,0 +1,84 @@
+{
+	"name": "ResumeSQLPool_copy2",
+	"properties": {
+		"description": "Using 2 web activities",
+		"activities": [
+			{
+				"name": "AuthoriseActivity",
+				"type": "WebActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": {
+						"value": "https://login.microsoftonline.com/a6e2367a-92ea-4e5a-b565-723830bcc095/oauth2/token",
+						"type": "Expression"
+					},
+					"connectVia": {
+						"referenceName": "AutoResolveIntegrationRuntime",
+						"type": "IntegrationRuntimeReference"
+					},
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/x-www-form-urlencoded"
+					},
+					"body": {
+						"value": "grant_type=client_credentials&client_id=278617f7-87b0-4965-9bec-f1983c5c41a6&client_secret=_5a~_~82CzPXGq6tS-s_-3l6lxixN0hm1-&resource=https://managament.azure.com/",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "ResumeActivity",
+				"type": "WebActivity",
+				"dependsOn": [
+					{
+						"activity": "AuthoriseActivity",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": {
+						"value": "https://management.azure.com/subscriptions/8bdb831d-803e-47a6-90b8-3dd9b732359a/resourceGroups/synapseanalyticsraj-rg-uksouth/providers/Microsoft.Sql/servers/Synapse-workspace-raj/databases/SynapseStagingR/resume?api-version=2017-10-01-preview",
+						"type": "Expression"
+					},
+					"connectVia": {
+						"referenceName": "AutoResolveIntegrationRuntime",
+						"type": "IntegrationRuntimeReference"
+					},
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Authorization": {
+							"value": "@concat('Bearer ', activity('AuthorizeActivity').output.access_token)",
+							"type": "Expression"
+						}
+					},
+					"body": {
+						"value": "{\n\n}",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2021-01-11T18:54:26Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

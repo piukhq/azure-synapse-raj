@@ -1,0 +1,71 @@
+{
+	"name": "ResumeSQLPool",
+	"properties": {
+		"description": "Using 2 web activities",
+		"activities": [
+			{
+				"name": "AuthoriseActivity",
+				"type": "WebActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://login.microsoftonline.com/8bdb831d-803e-47a6-90b8-3dd9b732359a/oauth2/token",
+					"connectVia": {
+						"referenceName": "AutoResolveIntegrationRuntime",
+						"type": "IntegrationRuntimeReference"
+					},
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/x-www-form-urlencoded"
+					},
+					"body": "grant_type=client_credentials&client_id=86b8066f-789a-4e9f-ae4c-62308de2eef3&client_secret=_5a~_~82CzPXGq6tS-s_-3l6lxixN0hm1-&resource=https://managament.azure.com/"
+				}
+			},
+			{
+				"name": "ResumeActivity",
+				"type": "WebActivity",
+				"dependsOn": [
+					{
+						"activity": "AuthoriseActivity",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://management.azure.com/subscriptions/8bdb831d-803e-47a6-90b8-3dd9b732359a/resourceGroups/synapseanalyticsraj-rg-uksouth /providers/Microsoft.Sql/servers/Synapse-workspace-raj.database.windows.net /databases/SynapseStagingR}/resume?api-version=2014-04-01-preview",
+					"connectVia": {
+						"referenceName": "AutoResolveIntegrationRuntime",
+						"type": "IntegrationRuntimeReference"
+					},
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Authorization": {
+							"value": "@concat(‘Bearer’, activity(‘AuthorizeActivity’).output.access_token)",
+							"type": "Expression"
+						}
+					}
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2021-01-11T12:09:05Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

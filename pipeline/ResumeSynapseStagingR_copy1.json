@@ -1,0 +1,41 @@
+{
+	"name": "ResumeSynapseStagingR_copy1",
+	"properties": {
+		"description": "To Resume the SQL Pool SynapseStagingR",
+		"activities": [
+			{
+				"name": "StartStaging",
+				"description": "Start Synapse Staging via REST API POST",
+				"type": "WebActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://management.azure.com/subscriptions/8bdb831d-803e-47a6-90b8-3dd9b732359a/resourceGroups/synapseanalyticsraj-rg-uksouth/providers/Microsoft.Sql/servers/synapse-workspace-raj.sql.azuresynapse.net/databases/SynapseStagingR}/resume?api-version=2014-04-01-preview",
+					"connectVia": {
+						"referenceName": "AutoResolveIntegrationRuntime",
+						"type": "IntegrationRuntimeReference"
+					},
+					"method": "POST",
+					"authentication": {
+						"type": "Basic",
+						"username": "synapsesqladminuser",
+						"password": {
+							"type": "SecureString",
+							"value": "**********"
+						}
+					}
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2021-01-11T14:24:11Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

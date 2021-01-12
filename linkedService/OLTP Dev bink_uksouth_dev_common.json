@@ -1,0 +1,17 @@
+{
+	"name": "OLTP Dev bink_uksouth_dev_common",
+	"type": "Microsoft.Synapse/workspaces/linkedservices",
+	"properties": {
+		"description": "bink-uksouth-dev-common.postgres.database.azure.com",
+		"annotations": [],
+		"type": "AzurePostgreSql",
+		"typeProperties": {
+			"connectionString": "host=bink-uksouth-dev-common.postgres.database.azure.com;port=5432;database=hermes;uid=common@bink-uksouth-dev-common;encryptionmethod=1;validateservercertificate=0",
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIlNZTkFQU0UtV09SS1NQQUNFLVJBSl8wZTNmMmRmYi1hNGI4LTQ1ZTQtOWYyZS0xNTE4NjY1NTA2ZjYiDQp9"
+		},
+		"connectVia": {
+			"referenceName": "AutoResolveIntegrationRuntime",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}
