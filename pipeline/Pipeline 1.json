@@ -5,7 +5,7 @@
 		"activities": [
 			{
 				"name": "SrcToStg_Org_CopyData",
-				"description": "Copy Data Activity to copy user_organisation data in Hermes to Org table in staging, test",
+				"description": "Copy Data Activity to copy user_organisation data in Hermes to Org table in staging",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
