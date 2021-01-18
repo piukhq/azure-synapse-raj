@@ -1,6 +1,7 @@
 {
 	"name": "Pipeline 1",
 	"properties": {
+		"description": "test",
 		"activities": [
 			{
 				"name": "SrcToStg_Org_CopyData",
